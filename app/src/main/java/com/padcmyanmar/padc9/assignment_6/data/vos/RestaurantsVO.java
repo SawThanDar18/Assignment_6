@@ -26,7 +26,7 @@ public class RestaurantsVO {
     @ColumnInfo(name = "name")
     private String name;
 
-    @SerializedName("imageUrl")
+    @SerializedName("image_url")
     @ColumnInfo(name = "image_url")
     private String image;
 

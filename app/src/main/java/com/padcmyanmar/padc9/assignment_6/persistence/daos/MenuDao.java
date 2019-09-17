@@ -15,6 +15,9 @@ public interface MenuDao {
     @Query("SELECT * FROM menu")
     List<MenuVO> getAllMenus();
 
+    @Query("SELECT * FROM menu WHERE restaurant_id=:id")
+    public abstract List<MenuVO> getMenusById(int id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long[] insertMenus(List<MenuVO> menuVOS);
 }

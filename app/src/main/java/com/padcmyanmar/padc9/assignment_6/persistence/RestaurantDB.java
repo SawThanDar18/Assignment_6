@@ -8,16 +8,14 @@ import android.content.Context;
 import com.padcmyanmar.padc9.assignment_6.data.vos.MenuVO;
 import com.padcmyanmar.padc9.assignment_6.data.vos.RestaurantsVO;
 import com.padcmyanmar.padc9.assignment_6.persistence.daos.MenuDao;
-import com.padcmyanmar.padc9.assignment_6.persistence.daos.RecentDao;
 import com.padcmyanmar.padc9.assignment_6.persistence.daos.RestaurantDao;
 import com.padcmyanmar.padc9.assignment_6.utils.Constants;
 
-@Database(entities = {RestaurantsVO.class, MenuVO.class}, version = 4, exportSchema = false)
+@Database(entities = {RestaurantsVO.class, MenuVO.class}, version = 13, exportSchema = false)
 public abstract class RestaurantDB extends RoomDatabase {
 
     public abstract RestaurantDao restaurantDao();
     public abstract MenuDao menuDao();
-    public abstract RecentDao recentDao();
 
     private static RestaurantDB objInstance;
 

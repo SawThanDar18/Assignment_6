@@ -20,6 +20,7 @@
     <dimen name="width_4">250dp</dimen>
     <dimen name="width_5">330dp</dimen>
 
+    <dimen name="height">5dp</dimen>
     <dimen name="height_1">40dp</dimen>
     <dimen name="height_2">50dp</dimen>
     <dimen name="height_3">200dp</dimen>

@@ -18,6 +18,9 @@ public abstract class RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public abstract long[] insertRestaurants(List<RestaurantsVO> restaurantsVOS);
 
+    @Query("SELECT * from restaurant")
+    public abstract List<RestaurantsVO> getAllRestaurants();
+
     @Query("SELECT DISTINCT restaurant.*, menu.* FROM restaurant INNER JOIN menu WHERE restaurant.id = menu.restaurant_id")
     public abstract List<RestaurantsAndMenuVO> getAllFromDB();
 

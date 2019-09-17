@@ -1,7 +1,6 @@
 package com.padcmyanmar.padc9.assignment_6.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.annotation.NonNull;
@@ -72,7 +71,7 @@ public class MainActivity extends BaseActivity implements ItemClicked {
         search_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = RecentActivity.newIntent(getApplicationContext());
+                Intent intent = SearchActivity.newIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
@@ -83,4 +82,5 @@ public class MainActivity extends BaseActivity implements ItemClicked {
         Intent intent = DetailActivity.newIntent(getApplicationContext(), id);
         startActivity(intent);
     }
+
 }

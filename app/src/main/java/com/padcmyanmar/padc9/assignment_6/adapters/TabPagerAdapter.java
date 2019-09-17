@@ -5,21 +5,27 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.padcmyanmar.padc9.assignment_6.fragments.Fragment_One;
+import com.padcmyanmar.padc9.assignment_6.delegates.DetailDelegate;
+import com.padcmyanmar.padc9.assignment_6.fragments.Fragment_Detail;
+import com.padcmyanmar.padc9.assignment_6.fragments.Fragment_Menu;
+import com.padcmyanmar.padc9.assignment_6.fragments.Fragment_Review;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
-    public TabPagerAdapter(FragmentManager fm) {
+    private static DetailDelegate detailDelegate;
+
+    public TabPagerAdapter(FragmentManager fm, DetailDelegate detailDelegate) {
         super(fm);
+        this.detailDelegate = detailDelegate;
     }
 
     @Override
     public Fragment getItem(int i) {
         if(i == 0){
-            return new Fragment_One();
+            return new Fragment_Detail(detailDelegate);
         }else if(i == 1){
-            return new Fragment_One();
-        }else return new Fragment_One();
+            return new Fragment_Menu(detailDelegate);
+        }else return new Fragment_Review(detailDelegate);
     }
 
     @Override

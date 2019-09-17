@@ -2,6 +2,7 @@ package com.padcmyanmar.padc9.assignment_6.data.models;
 
 import android.content.Context;
 
+import com.padcmyanmar.padc9.assignment_6.data.vos.MenuVO;
 import com.padcmyanmar.padc9.assignment_6.data.vos.RestaurantsAndMenuVO;
 import com.padcmyanmar.padc9.assignment_6.data.vos.RestaurantsVO;
 import com.padcmyanmar.padc9.assignment_6.network.dataagents.DataAgent;
@@ -50,10 +51,6 @@ public class RestaurantModelImpl extends BaseModel implements RestaurantModel {
             dataAgent.GetRestaurants(new DataAgent.GetDataFromNetwork() {
                 @Override
                 public void onSuccess(List<RestaurantsVO> restaurantsVOS) {
-                    /*for (RestaurantsVO restaurantsVO : restaurantsVOS) {
-                        dataRepository.put(restaurantsVO.getId(), restaurantsVO);
-                    }
-                    delegate.onSuccess(restaurantsVOS);*/
                     restaurantDB.restaurantDao().insertRestaurantsAndMenu(restaurantsVOS, restaurantDB.menuDao());
                     delegate.onSuccess(restaurantsVOS);
                 }
@@ -66,10 +63,48 @@ public class RestaurantModelImpl extends BaseModel implements RestaurantModel {
         }
     }
 
+    /*@Override
+    public void getAllMenus(final GetMenusData delegate) {
+        if (restaurantDB.areDatasExistInDB()) {
+            List<MenuVO> dataFromDB = restaurantDB.menuDao().getAllMenus();
+            delegate.onSuccess(dataFromDB);
+        } else {
+            dataAgent.getAllMenus(new DataAgent.GetMenusData() {
+                @Override
+                public void onSuccess(List<MenuVO> menus) {
+                    restaurantDB.menuDao().insertMenus(menus);
+                    delegate.onSuccess(menus);
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    delegate.onFailure(errorMessage);
+                }
+            });
+        }
+    }*/
+
     @Override
     public RestaurantsVO findById(int restaurantId) {
-        //RestaurantsVO restaurantsVO = dataRepository.get(restaurantId);
         RestaurantsVO restaurantsVO = restaurantDB.restaurantDao().getRestaurantById(restaurantId);
         return restaurantsVO;
     }
+
+    @Override
+    public List<MenuVO> getAllMenuById(int menuId){
+        return restaurantDB.menuDao().getMenusById(menuId);
+    }
+
+    @Override
+    public List<RestaurantsVO> getRestaurantByName(String name){
+        List<RestaurantsVO> restaurantsVOS = restaurantDB.restaurantDao().getAllRestaurants();
+        List<RestaurantsVO> search_restaurants = new ArrayList<>();
+        for (RestaurantsVO restaurants : restaurantsVOS) {
+            if(restaurants.getName().toLowerCase().contains(name.toLowerCase())){
+                search_restaurants.add(restaurants);
+            }
+        }
+        return search_restaurants;
+    }
+
 }
